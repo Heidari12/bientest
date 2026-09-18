@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<meta name="description" content="BIEN BOARD — بازی کن، رقابت کن، با تخفیف بخر">
+<link rel="manifest" href="manifest.json">
+<title>BIEN BOARD | بازی کن، رقابت کن، با تخفیف بخر</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--primary:#5b4cf0;--primary2:#7c3aed;--green:#10b981;--orange:#f59e0b;--red:#ef4444;--shadow:0 12px 35px rgba(17,24,39,.08);--radius:22px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.8}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.container{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{height:74px;display:flex;align-items:center;gap:24px}.logo{font-size:23px;font-weight:900;letter-spacing:.5px;color:#111827;display:flex;align-items:center;gap:9px}.logo i{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--primary),#9b5cff);display:inline-block;position:relative}.logo i:after{content:"";position:absolute;width:12px;height:12px;background:#fff;border-radius:4px;left:7px;top:11px;transform:rotate(45deg)}
+.navlinks{display:flex;gap:22px;color:#4b5563;font-size:14px}.navlinks a{cursor:pointer}.navlinks a:hover{color:var(--primary)}.search{flex:1;position:relative}.search input{width:100%;padding:11px 44px 11px 15px;border:1px solid var(--line);border-radius:14px;background:#f9fafb;outline:none}.search span{position:absolute;right:15px;top:8px;color:#9ca3af}
+.actions{display:flex;gap:8px;align-items:center}.iconbtn,.profilebtn{background:#f3f4f6;border-radius:13px;padding:10px 13px}.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:12px 18px;border-radius:13px;box-shadow:0 8px 20px rgba(91,76,240,.2)}.secondary{background:#fff;border:1px solid var(--line);padding:11px 17px;border-radius:13px}.danger{color:#b91c1c;background:#fee2e2;padding:10px 14px;border-radius:11px}.mobile-menu{display:none}
+.hero{margin:28px auto 24px;border-radius:30px;padding:48px;min-height:390px;color:#fff;position:relative;overflow:hidden;background:radial-gradient(circle at 85% 15%,#9d8cff 0,transparent 30%),linear-gradient(135deg,#111827,#33248f 60%,#5b4cf0)}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.12)}.hero:before{width:360px;height:360px;left:-100px;bottom:-180px}.hero:after{width:230px;height:230px;right:45px;bottom:-110px}.hero-content{position:relative;z-index:1;max-width:650px}.eyebrow{display:inline-flex;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);font-size:13px;margin-bottom:12px}.hero h1{font-size:clamp(32px,5vw,56px);line-height:1.25;margin:0 0 12px}.hero p{font-size:17px;color:#e5e7eb;max-width:610px}.hero-actions{display:flex;gap:10px;margin-top:24px}.hero .secondary{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
+.section{margin:38px 0}.sectionhead{display:flex;justify-content:space-between;align-items:end;margin-bottom:17px}.sectionhead h2{margin:0;font-size:24px}.muted{color:var(--muted);font-size:13px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.productimg{height:230px;background:#eef1f7;display:flex;align-items:center;justify-content:center;overflow:hidden}.productimg img{width:100%;height:100%;object-fit:cover}.cardbody{padding:17px}.tag{font-size:11px;padding:5px 9px;border-radius:999px;background:#f1efff;color:#5145cd;display:inline-block}.title{font-weight:800;font-size:17px;margin:9px 0 4px}.price{font-weight:900;font-size:18px}.old{text-decoration:line-through;color:#9ca3af;font-size:12px;margin-left:8px}.row{display:flex;align-items:center;justify-content:space-between;gap:8px}.timer{color:#b45309;background:#fff7ed;padding:7px 9px;border-radius:10px;font-size:12px;font-weight:800}.discount{color:#047857;background:#ecfdf5;padding:7px 9px;border-radius:10px;font-size:12px;font-weight:900}.cardactions{display:flex;gap:8px;margin-top:14px}.cardactions button{flex:1}
+.category-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.cat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 8px;text-align:center;cursor:pointer;transition:.2s}.cat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.cat .emoji{font-size:30px}.cat b{font-size:12px;display:block;margin-top:5px}
+.coming{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.coming .card{padding:17px;display:flex;align-items:center;gap:14px}.thumb{width:68px;height:68px;border-radius:15px;overflow:hidden;flex:none}.thumb img{width:100%;height:100%;object-fit:cover}
+.footer{margin-top:70px;background:#111827;color:#d1d5db;padding:40px 0}.footer .logo{color:#fff}.footer small{color:#9ca3af}
+.overlay{position:fixed;inset:0;background:rgba(17,24,39,.55);z-index:50;display:none;align-items:center;justify-content:center;padding:18px}.modal{background:#fff;width:min(700px,100%);max-height:92vh;overflow:auto;border-radius:24px;padding:25px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.modalhead{display:flex;justify-content:space-between;align-items:center}.close{background:#f3f4f6;border-radius:10px;padding:8px 12px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{font-size:12px;font-weight:bold;display:block;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:12px;outline:none}.field textarea{min-height:90px;resize:vertical}.full{grid-column:1/-1}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 20px}.tab{padding:9px 13px;border-radius:11px;background:#f3f4f6}.tab.active{background:#111827;color:#fff}
+.admin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:#f9fafb;border:1px solid var(--line);padding:15px;border-radius:16px}.stat b{display:block;font-size:25px}.adminlist{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden}.adminitem{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid var(--line)}.adminitem:last-child{border-bottom:0}
+.gamebox{background:#111827;border-radius:22px;color:#fff;padding:20px;overflow:hidden}.game-top{display:flex;justify-content:space-between;align-items:center}.gamecanvas{height:360px;background:linear-gradient(#dbeafe,#eff6ff);border-radius:16px;position:relative;overflow:hidden;margin-top:12px}.puzzle{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;width:min(380px,90%);aspect-ratio:1;margin:18px auto}.piece{background-image:url('https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=800&q=80');background-size:400% 400%;border-radius:3px;cursor:pointer;aspect-ratio:1}.runner{position:absolute;bottom:35px;right:45px;font-size:50px}.obstacle{position:absolute;bottom:32px;left:-60px;font-size:42px}.road{position:absolute;bottom:0;left:0;right:0;height:70px;background:#374151}.scorebig{font-size:38px;font-weight:900}
+.rank{display:flex;align-items:center;gap:12px;padding:10px;border-radius:13px}.rank.me{background:#f1efff}.ranknum{width:30px;height:30px;border-radius:9px;background:#f3f4f6;display:grid;place-items:center;font-weight:bold}.winner{background:linear-gradient(135deg,#ecfdf5,#f5f3ff);border:1px solid #d1fae5;border-radius:18px;padding:20px;text-align:center}.code{font-family:monospace;letter-spacing:2px;font-size:21px;font-weight:900;background:#111827;color:#fff;padding:12px;border-radius:12px;display:inline-block}
+@media(max-width:900px){.navlinks,.search{display:none}.mobile-menu{display:block}.nav{justify-content:space-between}.cards{grid-template-columns:repeat(2,1fr)}.category-grid{grid-template-columns:repeat(3,1fr)}.coming{grid-template-columns:1fr}.admin-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.container{width:94%}.hero{padding:28px 22px;min-height:420px}.hero h1{font-size:35px}.cards{grid-template-columns:1fr}.category-grid{grid-template-columns:repeat(3,1fr);gap:7px}.cat{padding:12px 5px}.cat .emoji{font-size:25px}.nav{height:66px}.actions .profilebtn{display:none}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.gamecanvas{height:330px}.hero-actions{flex-direction:column}.hero-actions button{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+  <div class="mobile-menu"><button class="iconbtn" onclick="showToast('منوی موبایل در نسخه دمو')">☰</button></div>
+  <div class="logo"><i></i>BIEN BOARD</div>
+  <nav class="navlinks"><a onclick="go('home')">خانه</a><a onclick="go('shop')">فروشگاه</a><a onclick="go('competitions')">مسابقات</a><a onclick="go('winners')">برندگان</a><a onclick="go('admin')">مدیریت</a></nav>
+  <div class="search"><span>⌕</span><input id="search" placeholder="جستجوی محصول..." oninput="render()"></div>
+  <div class="actions"><button class="iconbtn" onclick="go('cart')">🛒 <span id="cartCount">0</span></button><button class="profilebtn" onclick="openProfile()">ورود / ثبت‌نام</button></div>
+</div></header>
+
+<main class="container" id="app"></main>
+
+<footer class="footer"><div class="container"><div class="logo"><i></i>BIEN BOARD</div><p>بازی کن، رقابت کن، با تخفیف بخر.</p><small>نسخه Demo / Prototype — ساخته شده برای ارائه و توسعه آینده</small></div></footer>
+
+<div class="overlay" id="modal"><div class="modal" id="modalBody"></div></div>
+<div id="toast" style="position:fixed;bottom:22px;left:22px;z-index:100;display:none;background:#111827;color:white;padding:12px 16px;border-radius:12px;box-shadow:0 12px 30px #0003"></div>
+
+<script>
+const img={
+ tv:"https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=900&q=85",
+ phone:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=85",
+ airpods:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=900&q=85",
+ ps:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=900&q=85",
+ coffee:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85",
+ vacuum:"https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=900&q=85",
+ airfryer:"https://images.unsplash.com/photo-1585515656973-6a8a7b6d6f0d?auto=format&fit=crop&w=900&q=85",
+ switch:"https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?auto=format&fit=crop&w=900&q=85",
+ beauty:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=85"
+};
+const seedProducts=[
+{id:1,name:"تلویزیون هوشمند Samsung 48 اینچ",brand:"Samsung",cat:"لوازم دیجیتال",price:200000000,img:img.tv,stock:1,desc:"تلویزیون هوشمند با نمایشگر باکیفیت و طراحی باریک؛ مناسب خانه‌های مدرن.",spec:"48 اینچ • 4K • Smart TV • Wi‑Fi",competition:true,discount:50,end:Date.now()+18*3600e3,game:"runner"},
+{id:2,name:"Apple AirPods Pro",brand:"Apple",cat:"موبایل و گجت",price:32000000,img:img.airpods,stock:1,desc:"هدفون بی‌سیم با حذف نویز فعال و تجربه صوتی فراگیر.",spec:"ANC • Bluetooth • USB‑C",competition:true,discount:40,end:Date.now()+26*3600e3,game:"puzzle"},
+{id:3,name:"PlayStation 5 Slim",brand:"Sony",cat:"سرگرمی و بازی",price:65000000,img:img.ps,stock:1,desc:"کنسول نسل جدید برای تجربه بازی‌های روز.",spec:"SSD • 4K • HDMI • DualSense",competition:true,discount:35,end:Date.now()+42*3600e3,game:"runner"},
+{id:4,name:"اسپرسوساز خانگی",brand:"DeLonghi",cat:"خانه و آشپزخانه",price:28000000,img:img.coffee,stock:1,desc:"اسپرسوساز جمع‌وجور برای تهیه قهوه حرفه‌ای در خانه.",spec:"15 bar • نازل بخار • مخزن آب",competition:false,discount:0},
+{id:5,name:"جاروبرقی بدون کیسه",brand:"Bosch",cat:"لوازم خانگی",price:18000000,img:img.vacuum,stock:1,desc:"جاروبرقی قدرتمند و کم‌صدا با طراحی کاربردی.",spec:"1800W • فیلتر HEPA • بدون کیسه",competition:false,discount:0},
+{id:6,name:"Samsung Galaxy S Series",brand:"Samsung",cat:"موبایل و گجت",price:78000000,img:img.phone,stock:1,desc:"گوشی هوشمند پرچمدار با دوربین حرفه‌ای و نمایشگر باکیفیت.",spec:"AMOLED • 5G • دوربین چندگانه",competition:false,discount:0},
+{id:7,name:"Nintendo Switch OLED",brand:"Nintendo",cat:"سرگرمی و بازی",price:42000000,img:img.switch,stock:1,desc:"کنسول قابل حمل برای بازی در خانه و بیرون.",spec:"OLED • 64GB • Portable",competition:false,discount:0},
+{id:8,name:"ست مراقبت و زیبایی",brand:"Beauty Lab",cat:"آرایشی و بهداشتی",price:12500000,img:img.beauty,stock:1,desc:"مجموعه کاربردی مراقبت شخصی برای استفاده روزمره.",spec:"چند ابزار • شارژی • قابل حمل",competition:false,discount:0}
+];
+let products=JSON.parse(localStorage.getItem("bien_products")||"null")||seedProducts;
+let user=JSON.parse(localStorage.getItem("bien_user")||"null")||{name:"مهمان",username:"Guest",phone:""};
+let attempts=JSON.parse(localStorage.getItem("bien_attempts")||"{}");
+let scores=JSON.parse(localStorage.getItem("bien_scores")||"{}");
+let cart=JSON.parse(localStorage.getItem("bien_cart")||"[]");
+let page="home", selectedCat="همه";
+
+const money=n=>new Intl.NumberFormat("fa-IR").format(n)+" تومان";
+function save(){localStorage.setItem("bien_products",JSON.stringify(products));localStorage.setItem("bien_user",JSON.stringify(user));localStorage.setItem("bien_attempts",JSON.stringify(attempts));localStorage.setItem("bien_scores",JSON.stringify(scores));localStorage.setItem("bien_cart",JSON.stringify(cart));}
+function showToast(t){const x=document.getElementById("toast");x.textContent=t;x.style.display="block";clearTimeout(window.tt);window.tt=setTimeout(()=>x.style.display="none",2500)}
+function openModal(html){document.getElementById("modalBody").innerHTML=html;document.getElementById("modal").style.display="flex"}
+function closeModal(){document.getElementById("modal").style.display="none"}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+function go(p){page=p;render();scrollTo(0,0)}
+function addCart(id){if(!cart.includes(id))cart.push(id);save();updateCart();showToast("محصول به سبد خرید اضافه شد.")}
+function updateCart(){document.getElementById("cartCount").textContent=cart.length}
+function productCard(p){
+let active=p.competition&&p.end>Date.now();
+return `<article class="card"><div class="productimg"><img src="${p.img}" alt="${p.name}"></div><div class="cardbody">
+<div class="row"><span class="tag">${p.cat}</span>${active?`<span class="discount">${p.discount}% تخفیف</span>`:""}</div>
+<div class="title">${p.name}</div><div class="muted">${p.brand}</div>
+<div style="margin-top:8px"><span class="price">${money(p.price)}</span></div>
+${active?`<div class="row" style="margin-top:10px"><span class="timer">⏱ <span data-end="${p.end}">...</span></span><span class="muted">${Math.floor(600+Math.random()*900).toLocaleString("fa-IR")} شرکت‌کننده</span></div>`:"<div class='muted' style='margin-top:10px'>فروش عادی • موجودی: "+p.stock+"</div>"}
+<div class="cardactions"><button class="secondary" onclick="openProduct(${p.id})">جزئیات</button>${active?`<button class="primary" onclick="startGame(${p.id})">🎮 بازی کن</button>`:`<button class="primary" onclick="addCart(${p.id})">افزودن به سبد</button>`}</div></div></article>`}
+function render(){
+const app=document.getElementById("app");
+if(page==="home") renderHome(app); else if(page==="shop") renderShop(app); else if(page==="competitions") renderCompetitions(app); else if(page==="winners") renderWinners(app); else if(page==="cart") renderCart(app); else if(page==="admin") renderAdmin(app); else renderHome(app);
+updateCart();updateTimers();
+}
+function renderHome(a){
+let active=products.filter(p=>p.competition&&p.end>Date.now()).slice(0,3);
+let upcoming=products.filter(p=>!p.competition).slice(0,3);
+a.innerHTML=`<section class="hero"><div class="hero-content"><span class="eyebrow">نسل جدید خرید هوشمند</span><h1>بازی کن، رقابت کن،<br>با تخفیف بخر.</h1><p>محصول مورد علاقه‌ات را انتخاب کن، وارد مسابقه شو و با بهترین امتیاز، شانس خرید آن را با تخفیف ویژه به دست بیاور.</p><div class="hero-actions"><button class="primary" onclick="go('competitions')">مشاهده مسابقات</button><button class="secondary" onclick="go('shop')">مشاهده فروشگاه</button></div></div></section>
+<section class="section"><div class="sectionhead"><div><h2>🔥 مسابقات در حال برگزاری</h2><span class="muted">برای هر محصول، یک رقابت مستقل</span></div><button class="secondary" onclick="go('competitions')">همه مسابقات ←</button></div><div class="cards">${active.map(productCard).join("")}</div></section>
+<section class="section"><div class="sectionhead"><h2>دسته‌بندی‌ها</h2></div><div class="category-grid">${[["📱","موبایل و گجت"],["📺","لوازم دیجیتال"],["🏠","لوازم خانگی"],["🎮","سرگرمی و بازی"],["💄","آرایشی و بهداشتی"],["☕","خانه و آشپزخانه"]].map(x=>`<div class="cat" onclick="selectedCat='${x[1]}';go('shop')"><div class="emoji">${x[0]}</div><b>${x[1]}</b></div>`).join("")}</div></section>
+<section class="section"><div class="sectionhead"><div><h2>⏳ مسابقات به‌زودی</h2><span class="muted">برای فرصت‌های بعدی آماده باش</span></div></div><div class="coming">${upcoming.map(p=>`<div class="card"><div class="thumb"><img src="${p.img}"></div><div><b>${p.name}</b><div class="muted">${p.cat}</div><span class="tag">به‌زودی</span></div></div>`).join("")}</div></section>`;
+}
+function renderShop(a){
+let q=(document.getElementById("search")?.value||"").trim().toLowerCase();
+let ps=products.filter(p=>(selectedCat==="همه"||p.cat===selectedCat)&&(!q||p.name.toLowerCase().includes(q)||p.brand.toLowerCase().includes(q)));
+a.innerHTML=`<section class="section"><div class="sectionhead"><div><h2>فروشگاه</h2><span class="muted">محصولات را جستجو و فیلتر کن</span></div><button class="secondary" onclick="selectedCat='همه';render()">همه دسته‌ها</button></div><div class="tabs">${["همه","لوازم دیجیتال","موبایل و گجت","لوازم خانگی","سرگرمی و بازی","آرایشی و بهداشتی","خانه و آشپزخانه"].map(c=>`<button class="tab ${selectedCat===c?"active":""}" onclick="selectedCat='${c}';render()">${c}</button>`).join("")}</div><div class="cards">${ps.map(productCard).join("")}</div></section>`;
+}
+function renderCompetitions(a){
+let ps=products.filter(p=>p.competition&&p.end>Date.now());
+a.innerHTML=`<section class="section"><div class="sectionhead"><div><h2>مسابقات</h2><span class="muted">سه فرصت رایگان برای هر مسابقه</span></div></div><div class="cards">${ps.map(productCard).join("")}</div></section>`;
+}
+function renderWinners(a){
+a.innerHTML=`<section class="section"><div class="sectionhead"><div><h2>🏆 برندگان</h2><span class="muted">نمونه‌ای از مسابقات پایان‌یافته</span></div></div><div class="card" style="padding:22px"><div class="winner"><div style="font-size:38px">🏆</div><h2>مسابقه نمونه Samsung TV</h2><p>برنده: <b>Ali88</b> • امتیاز: <b>18,920</b></p><div class="code">BIEN-TV50-X92K</div><p class="muted">کد تخفیف ۵۰٪ — اعتبار ۷ روزه</p></div></div></section>`;
+}
+function openProduct(id){
+let p=products.find(x=>x.id===id),active=p.competition&&p.end>Date.now();
+openModal(`<div class="modalhead"><h2>${p.name}</h2><button class="close" onclick="closeModal()">×</button></div><div class="productimg" style="height:280px;margin:10px 0 18px;border-radius:16px"><img src="${p.img}" alt=""></div><span class="tag">${p.cat}</span><h3>${money(p.price)}</h3><p>${p.desc}</p><p><b>مشخصات:</b> ${p.spec}</p>${active?`<div class="winner" style="text-align:right"><b>🎮 این محصول در مسابقه است</b><p>تخفیف برنده: <b>${p.discount}%</b> • قیمت برنده: <b>${money(p.price*(1-p.discount/100))}</b></p><p>زمان باقی‌مانده: <b><span data-end="${p.end}">...</span></b></p></div>`:""}<div class="cardactions"><button class="secondary" onclick="addCart(${p.id});closeModal()">افزودن به سبد</button>${active?`<button class="primary" onclick="closeModal();startGame(${p.id})">🎮 ورود به بازی</button>`:`<button class="primary" onclick="addCart(${p.id});closeModal()">خرید با قیمت اصلی</button>`}</div>`);
+}
+function startGame(id){
+let p=products.find(x=>x.id===id), used=attempts[id]||0;
+if(used>=3){openModal(`<div class="modalhead"><h2>فرصت‌های رایگان تمام شد</h2><button class="close" onclick="closeModal()">×</button></div><p>برای این محصول هر کاربر ۳ بار فرصت رایگان دارد.</p><button class="primary" onclick="closeModal()">متوجه شدم</button>`);return}
+if(p.game==="runner") runnerGame(p); else puzzleGame(p);
+}
+function puzzleGame(p){
+let start=Date.now(), order=[...Array(16).keys()].sort(()=>Math.random()-.5);
+openModal(`<div class="modalhead"><div><span class="tag">مسابقه ${p.name}</span><h2>🧩 پازل محصول</h2></div><button class="close" onclick="closeModal()">×</button></div><div class="gamebox"><div class="game-top"><b>امتیاز با سرعت بیشتر افزایش می‌یابد</b><span id="moves">حرکت: 0</span></div><div class="puzzle" id="puzzle"></div><div class="row"><span>فرصت‌های رایگان: ${3-(attempts[p.id]||0)}</span><button class="primary" onclick="finishPuzzle(${p.id},${start})">پایان بازی</button></div></div>`);
+const box=document.getElementById("puzzle");let moves=0,selected=null;
+order.forEach((n,i)=>{let d=document.createElement("div");d.className="piece";let x=n%4,y=Math.floor(n/4);d.style.backgroundPosition=`${x*33.333}% ${y*33.333}%`;d.dataset.n=n;d.onclick=()=>{moves++;document.getElementById("moves").textContent="حرکت: "+moves;if(selected!==null){[d.dataset.n,selected.dataset.n]=[selected.dataset.n,d.dataset.n];selected.style.opacity="1";d.style.opacity="1";selected=null}else{selected=d;d.style.opacity=".55"}};box.appendChild(d)});
+}
+function finishPuzzle(id,start){let elapsed=(Date.now()-start)/1000,score=Math.max(500,Math.round(22000-elapsed*230-Math.random()*1800));recordScore(id,score,elapsed);closeModal();showResult(id,score)}
+function runnerGame(p){
+let score=0,alive=true,start=Date.now();
+openModal(`<div class="modalhead"><div><span class="tag">مسابقه ${p.name}</span><h2>🏃 بازی سرعت</h2></div><button class="close" onclick="alive=false;closeModal()">×</button></div><div class="gamebox"><div class="game-top"><b>برای پرش روی صفحه بزن</b><span id="rscore">0</span></div><div class="gamecanvas" id="runner"><div class="road"></div><div class="runner">📺</div><div class="obstacle" id="obs">🧱</div></div><p class="muted" style="color:#cbd5e1">با افزایش زمان، سرعت بیشتر می‌شود. برای پرش روی صفحه یا Space بزن.</p></div>`);
+const area=document.getElementById("runner"),obs=document.getElementById("obs");let jump=false,vel=0,pos=0,last=performance.now();
+function loop(t){if(!alive)return;let dt=(t-last)/16;last=t;score+=Math.round(dt*(1+(Date.now()-start)/10000));document.getElementById("rscore").textContent=score;pos-=dt*(3+(Date.now()-start)/7000);if(pos<-70)pos=area.clientWidth+Math.random()*180;obs.style.left=pos+"px";if(jump){vel-=.7*dt;let bottom=parseFloat(getComputedStyle(document.querySelector(".runner")).bottom);let nb=bottom+vel*5;document.querySelector(".runner").style.bottom=Math.max(35,nb)+"px";if(nb<=35){jump=false;vel=0}}let rr=document.querySelector(".runner").getBoundingClientRect(),oo=obs.getBoundingClientRect();if(rr.left<oo.right&&rr.right>oo.left&&rr.bottom>oo.top+10){alive=false;setTimeout(()=>{closeModal();recordScore(p.id,score,(Date.now()-start)/1000);showResult(p.id,score)},250);return}requestAnimationFrame(loop)} 
+function doJump(){if(!jump){jump=true;vel=7}}area.onclick=doJump;document.onkeydown=e=>{if(e.code==="Space"){e.preventDefault();doJump()}};requestAnimationFrame(loop);
+}
+function recordScore(id,score,elapsed){attempts[id]=(attempts[id]||0)+1;scores[id]=Math.max(scores[id]||0,score);save()}
+function showResult(id,score){
+let p=products.find(x=>x.id===id),rank=4;
+openModal(`<div class="modalhead"><h2>🎉 نتیجه بازی</h2><button class="close" onclick="closeModal()">×</button></div><div class="winner"><div class="scorebig">${score.toLocaleString("fa-IR")}</div><div>امتیاز شما</div><hr><p>رکورد شخصی شما: <b>${(scores[id]||score).toLocaleString("fa-IR")}</b></p><p>رتبه فعلی: <b>#${rank}</b></p><p>فرصت رایگان باقی‌مانده: <b>${3-(attempts[id]||0)}</b></p></div><div style="margin-top:15px"><h3>🏆 جدول برترین‌ها</h3>${["Ali88","Sara23","Reza77",user.username||"شما","Nika"].map((n,i)=>`<div class="rank ${i===3?"me":""}"><span class="ranknum">${i+1}</span><b>${n}</b><span style="margin-right:auto">${(18920-i*480+(i===3?score%400:0)).toLocaleString("fa-IR")}</span></div>`).join("")}</div><div class="cardactions"><button class="secondary" onclick="closeModal()">ادامه</button>${(attempts[id]||0)<3?`<button class="primary" onclick="closeModal();startGame(${id})">بازی دوباره</button>`:""}</div>`);
+}
+function openProfile(){
+openModal(`<div class="modalhead"><h2>پروفایل کاربر</h2><button class="close" onclick="closeModal()">×</button></div><div class="formgrid"><div class="field"><label>نام</label><input id="uName" value="${user.name}"></div><div class="field"><label>نام کاربری</label><input id="uUser" value="${user.username}"></div><div class="field full"><label>شماره موبایل</label><input id="uPhone" value="${user.phone}" placeholder="09xxxxxxxxx"></div></div><button class="primary" style="margin-top:15px" onclick="user={name:document.getElementById('uName').value||'کاربر',username:document.getElementById('uUser').value||'Guest',phone:document.getElementById('uPhone').value};save();closeModal();showToast('پروفایل ذخیره شد')">ذخیره اطلاعات</button>`);
+}
+function renderCart(a){
+let ps=cart.map(id=>products.find(p=>p.id===id)).filter(Boolean),total=ps.reduce((s,p)=>s+p.price,0);
+a.innerHTML=`<section class="section"><div class="sectionhead"><div><h2>🛒 سبد خرید</h2><span class="muted">${ps.length} محصول</span></div></div>${ps.length?`<div class="cards">${ps.map(p=>`<div class="card"><div class="productimg"><img src="${p.img}"></div><div class="cardbody"><b>${p.name}</b><p class="price">${money(p.price)}</p><button class="danger" onclick="cart=cart.filter(x=>x!==${p.id});save();render()">حذف</button></div></div>`).join("")}</div><div class="card" style="padding:20px;margin-top:18px"><div class="row"><b>جمع کل</b><b class="price">${money(total)}</b></div><button class="primary" style="margin-top:14px;width:100%" onclick="checkout()">ادامه و ثبت سفارش</button></div>`:`<div class="card" style="padding:40px;text-align:center"><div style="font-size:50px">🛒</div><h3>سبد خرید خالی است</h3><button class="primary" onclick="go('shop')">رفتن به فروشگاه</button></div>`}</section>`;
+}
+function checkout(){openModal(`<div class="modalhead"><h2>ثبت سفارش Demo</h2><button class="close" onclick="closeModal()">×</button></div><p class="muted">پرداخت در نسخه Demo شبیه‌سازی می‌شود.</p><div class="formgrid"><div class="field"><label>نام و نام خانوادگی</label><input value="${user.name}"></div><div class="field"><label>شماره موبایل</label><input value="${user.phone}"></div><div class="field full"><label>آدرس</label><textarea placeholder="آدرس کامل"></textarea></div><div class="field"><label>کد پستی</label><input placeholder="۱۰ رقم"></div><div class="field"><label>شهر</label><input placeholder="شهر"></div></div><button class="primary" style="margin-top:15px;width:100%" onclick="cart=[];save();closeModal();openModal('<div class=winner><div style=font-size:45px>✓</div><h2>سفارش با موفقیت ثبت شد</h2><p>این پرداخت در نسخه Demo شبیه‌سازی شده است.</p><button class=primary onclick=closeModal()>بازگشت</button></div>')">پرداخت و ثبت سفارش</button>`)}
+function renderAdmin(a){
+a.innerHTML=`<section class="section"><div class="sectionhead"><div><h2>پنل مدیریت</h2><span class="muted">مدیریت محتوای نسخه Demo بدون تغییر کد</span></div><button class="secondary" onclick="resetDemo()">بازنشانی Demo</button></div><div class="admin-grid"><div class="stat"><span class="muted">محصولات</span><b>${products.length}</b></div><div class="stat"><span class="muted">مسابقات فعال</span><b>${products.filter(p=>p.competition&&p.end>Date.now()).length}</b></div><div class="stat"><span class="muted">دسته‌ها</span><b>${new Set(products.map(p=>p.cat)).size}</b></div><div class="stat"><span class="muted">کاربر Demo</span><b>1</b></div></div><div style="margin:20px 0"><button class="primary" onclick="editProduct()">＋ افزودن محصول</button></div><div class="adminlist">${products.map(p=>`<div class="adminitem"><div><b>${p.name}</b><div class="muted">${p.cat} • ${money(p.price)}</div></div><div style="display:flex;gap:6px"><button class="secondary" onclick="editProduct(${p.id})">ویرایش</button><button class="danger" onclick="deleteProduct(${p.id})">حذف</button></div></div>`).join("")}</div></section>`;
+}
+function editProduct(id=null){
+let p=id?products.find(x=>x.id===id):{id:Date.now(),name:"",brand:"",cat:"لوازم دیجیتال",price:0,img:img.tv,stock:1,desc:"",spec:"",competition:false,discount:50,end:Date.now()+24*3600e3,game:"puzzle"};
+openModal(`<div class="modalhead"><h2>${id?"ویرایش محصول":"افزودن محصول"}</h2><button class="close" onclick="closeModal()">×</button></div><div class="formgrid">
+<div class="field full"><label>نام محصول</label><input id="pn" value="${p.name}"></div>
+<div class="field"><label>برند</label><input id="pb" value="${p.brand}"></div>
+<div class="field"><label>دسته‌بندی</label><input id="pc" value="${p.cat}"></div>
+<div class="field"><label>قیمت (تومان)</label><input id="pp" type="number" value="${p.price}"></div>
+<div class="field"><label>موجودی</label><input id="pi" type="number" value="${p.stock}"></div>
+<div class="field full"><label>URL تصویر محصول</label><input id="pimg" value="${p.img}"></div>
+<div class="field full"><label>توضیحات</label><textarea id="pd">${p.desc}</textarea></div>
+<div class="field full"><label>مشخصات</label><input id="ps" value="${p.spec}"></div>
+<div class="field"><label>مسابقه فعال؟</label><select id="pco"><option value="false" ${!p.competition?"selected":""}>خیر</option><option value="true" ${p.competition?"selected":""}>بله</option></select></div>
+<div class="field"><label>تخفیف (%)</label><input id="pdis" type="number" value="${p.discount||50}"></div>
+<div class="field"><label>نوع بازی</label><select id="pg"><option value="puzzle" ${p.game==="puzzle"?"selected":""}>Puzzle</option><option value="runner" ${p.game==="runner"?"selected":""}>Runner</option></select></div>
+</div><button class="primary" style="margin-top:16px;width:100%" onclick="saveProduct(${id||"null"})">ذخیره محصول</button>`);
+}
+function saveProduct(id){
+let p=id?products.find(x=>x.id===id):{id:Date.now()};
+Object.assign(p,{name:pn.value,brand:pb.value,cat:pc.value,price:Number(pp.value),stock:Number(pi.value),img:pimg.value,desc:pd.value,spec:ps.value,competition:pco.value==="true",discount:Number(pdis.value),game:pg.value,end:Date.now()+24*3600e3});
+if(!id)products.push(p);save();closeModal();render();showToast("محصول ذخیره شد")}
+function deleteProduct(id){if(confirm("محصول حذف شود؟")){products=products.filter(p=>p.id!==id);save();render();showToast("محصول حذف شد")}}
+function resetDemo(){if(confirm("همه تغییرات Demo بازنشانی شود؟")){localStorage.clear();location.reload()}}
+function updateTimers(){document.querySelectorAll("[data-end]").forEach(el=>{let end=Number(el.dataset.end);let diff=Math.max(0,end-Date.now());let h=Math.floor(diff/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);el.textContent=diff?"".concat(String(h).padStart(2,"0"),":",String(m).padStart(2,"0"),":",String(s).padStart(2,"0")):"پایان یافت";});}
+setInterval(()=>{updateTimers();if(page==="competitions"||page==="home")render()},1000);
+render();
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>
