@@ -48,3 +48,10 @@ Settings → Pages → Deploy from branch → `main` → `/ (root)`
 - سبد خرید هم محل ورود و اعمال کد تخفیف دارد و قیمت اصلی/تخفیفی را نمایش می‌دهد.
 - ستاره‌های بازی بپر بپر هر کدام ۲۵۰ امتیاز اضافه می‌کنند.
 - اسکرول و لمس صفحه در بازی بپر بپر با قفل صفحه و touch-action/overscroll کنترل شده است.
+
+
+### v10
+- Winner notification is one-time per newly issued reward and no longer reappears after refresh/update for legacy rewards.
+- Cloud loading is completed before competition-end checks, preventing stale local rewards from triggering notifications.
+- Winner modal now has a visible × close button.
+- Service worker cache bumped to v10.
