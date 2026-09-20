@@ -33,3 +33,10 @@ Settings → Pages → Deploy from branch → `main` → `/ (root)`
 
 ### بروزرسانی از روی گوشی
 در نسخه v7 یک دکمه «🔄 بروزرسانی» در بالای سایت اضافه شده است. با زدن آن، Service Worker و Cache قدیمی پاک می‌شوند، آخرین نسخه فایل‌های سایت دریافت می‌شود و صفحه دوباره باز می‌شود. اطلاعات محصولات و تنظیمات ابری/محلی پاک نمی‌شوند.
+
+## BIEN BOARD v8
+- Startup now waits for the shared cloud configuration before rendering the storefront, so products/competitions/opponent scores configured in Management are applied immediately on first load.
+- Runner game blocks long-press, selection, drag, context menu, touch scrolling and browser gestures inside the game area.
+- Management area has a demo password gate.
+- Demo admin password: `BIEN-ADMIN-1404`
+- Note: this is a client-side demo gate, not production-grade security. For production, use authenticated backend/RLS.
