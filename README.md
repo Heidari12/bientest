@@ -1,4 +1,4 @@
-# BIEN BOARD — Demo v4
+# BIEN BOARD — Demo v9
 
 نسخه نمایشی PWA فارسی و راست‌چین BIEN BOARD برای GitHub Pages.
 
@@ -40,3 +40,11 @@ Settings → Pages → Deploy from branch → `main` → `/ (root)`
 - Management area has a demo password gate.
 - Demo admin password: `BIEN-ADMIN-1404`
 - Note: this is a client-side demo gate, not production-grade security. For production, use authenticated backend/RLS.
+
+
+## v9 fixes
+- پایان مسابقه از هر صفحه با اعلان برنده و کد جدید؛ جایزه قبلی همان محصول با جایزه جدید جایگزین می‌شود.
+- مسابقات پایان‌یافته روی سایت می‌مانند و نتایج ۵ نفر اول قابل مشاهده است.
+- سبد خرید هم محل ورود و اعمال کد تخفیف دارد و قیمت اصلی/تخفیفی را نمایش می‌دهد.
+- ستاره‌های بازی بپر بپر هر کدام ۲۵۰ امتیاز اضافه می‌کنند.
+- اسکرول و لمس صفحه در بازی بپر بپر با قفل صفحه و touch-action/overscroll کنترل شده است.
