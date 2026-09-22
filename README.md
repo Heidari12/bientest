@@ -8,3 +8,6 @@
 - بپر بپر: قفل کامل اسکرول و لمس صفحه هنگام بازی.
 - مار: شروع حرکت با اولین جهت کاربر و جلوگیری از پایان فوری در بازی‌های بعدی.
 - شکار تخفیف: فقط یک هدف در هر لحظه، رنگ‌ها متعادل‌تر و فاصله ظهور حداقل ۱.۲۵ ثانیه.
+
+
+Version 23: restored the missing GameAudio runtime required by all games; all game launchers now have the audio object available.

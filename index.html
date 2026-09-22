@@ -50,7 +50,7 @@ const seed=[
 {id:8,name:'ست مراقبت و زیبایی',brand:'Beauty Lab',cat:'beauty',price:12500000,img:remote.beauty,stock:1,desc:'مجموعه کاربردی مراقبت شخصی برای استفاده روزمره.',spec:'چند ابزار • شارژی • قابل حمل',competition:false,discount:0,end:Date.now()+24*3600e3,game:'puzzle',freeAttempts:0,pack:'اصلی'}
 ];
 const CLOUD_NS='bien-board-demo-7f2c9a31c4d8';
-const APP_VERSION=22;
+const APP_VERSION=23;
 const ADMIN_PASSWORD='BIEN-ADMIN-1404';
 const CLOUD_BASE='https://mantledb.sh/v2/'+CLOUD_NS;
 let categories=load('bb_categories',null)||defaultCategories;
@@ -146,6 +146,21 @@ async function startGame(id){
   if(used>=max){openModal(`<div class="modalhead"><h2>فرصت‌های رایگان</h2><button class="close" onclick="closeModal()">×</button></div><div class="winner"><div style="font-size:45px">🎟️</div><h3>فرصت رایگان این محصول تمام شده است.</h3><p>این مقدار از پنل مدیریت قابل تغییر است.</p><button class="primary" onclick="closeModal();go('admin')">رفتن به مدیریت</button></div>`);return}
   window.__activeGameProductId=p.id;if(p.game==='runner')runnerGame(p);else if(p.game==='target')targetGame(p);else if(p.game==='snake')snakeGame(p);else if(p.game==='puzzlePlace')puzzlePlacementGame(p);else puzzleGame(p)
 }
+const GameAudio=(()=>{
+ let ctx=null,master=null,timer=null,mode='';
+ let tempo=1;
+ const patterns={runner:[261.63,329.63,392.00,329.63,293.66,349.23,440.00,349.23],snake:[220,261.63,329.63,392,329.63,261.63],target:[329.63,392,493.88,392,349.23,440],puzzle:[261.63,293.66,349.23,392,349.23,293.66]};
+ function ensure(){if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=.42;master.connect(ctx.destination)}if(ctx.state==='suspended')ctx.resume();}
+ function unlock(){try{ensure();if(ctx.state==='suspended')ctx.resume()}catch(e){}}
+ function tone(freq,dur=.12,type='sine',gain=.08,when){try{ensure();const t=when??ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.setValueAtTime(freq,t);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(Math.max(.0001,gain),t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g);g.connect(master);o.start(t);o.stop(t+dur+.03)}catch(e){}}
+ function chord(freqs,dur=.16,gain=.045){freqs.forEach((f,i)=>tone(f,dur,'sine',gain,i*.018+((ctx&&ctx.currentTime)||0)))}
+ function schedule(){if(!ctx||!mode)return;const arr=patterns[mode]||patterns.puzzle;const i=Math.floor((window.__gameMusicStep||0))%arr.length;window.__gameMusicStep=(window.__gameMusicStep||0)+1;const pitch=mode==='runner'?1+Math.min(.34,(window.__runnerElapsed||0)/70):1;const root=arr[i]*pitch;const now=ctx.currentTime;tone(root,.26,'triangle',.075,now);tone(root/2,.30,'sine',.035,now);if(i%4===0)tone(root*1.5,.12,'sine',.030,now+.02);const delay=Math.max(90,330/tempo);timer=setTimeout(schedule,delay)}
+ function start(kind){stop();ensure();mode=kind;tempo=kind==='target'?1.35:kind==='runner'?1.05:1;window.__gameMusicStep=0;schedule()}
+ function setTempo(v){tempo=Math.max(.7,Math.min(2.5,v))}
+ function stop(){if(timer){clearTimeout(timer);timer=null}mode='';window.__gameMusicStep=0}
+ return {start,stop,setTempo,tone,chord,unlock};
+})();
+window.__gameAudioStop=()=>GameAudio.stop();
 function puzzleGame(p){gameRunning=true;GameAudio.start('puzzle');const start=Date.now();let moves=0,left=120,sel=null;const size=4;let board=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];function neighbors(i){const r=Math.floor(i/size),c=i%size,a=[];if(r>0)a.push(i-size);if(r<size-1)a.push(i+size);if(c>0)a.push(i-1);if(c<size-1)a.push(i+1);return a}for(let k=0,prev=-1;k<180;k++){const blank=board.indexOf(15),opts=neighbors(blank).filter(x=>x!==prev),pick=opts[Math.floor(Math.random()*opts.length)];[board[blank],board[pick]]=[board[pick],board[blank]];prev=blank}openModal(`<div class="modalhead"><div><span class="tag">${esc(p.name)}</span><h2>🧩 پازل تصویری ۴×۴</h2></div><button class="close" onclick="closeModal()">×</button></div><div class="gamebox"><div class="game-hud"><span class="hudpill">زمان: <b id="ptime">120</b> ثانیه</span><span class="hudpill">حرکت: <b id="pmoves">0</b></span><span class="hudpill">🔊 صدا روشن</span><span class="hudpill" id="prank">رتبه: در حال بازی</span></div><p class="puzzle-help">تصویر محصول به ۱۵ تکه تقسیم شده است. با لمس قطعه کنار خانه خالی، تصویر را کامل کن.</p><div class="puzzle-board" id="pboard"></div><button class="secondary" style="width:100%" onclick="closeModal()">خروج از بازی</button></div>`);const boardEl=document.getElementById('pboard'),image=p.img||'';function solved(){return board.every((v,i)=>v===i)}function draw(){boardEl.innerHTML=board.map((v,i)=>{if(v===15)return `<button class="puzzle-piece blank" aria-label="خانه خالی"></button>`;const row=Math.floor(v/size),col=v%size;return `<button class="puzzle-piece ${sel===i?'selected':''}" data-i="${i}"><span class="tileimg" style="background-image:url('${esc(image)}');background-position:${col*33.333}% ${row*33.333}%"></span></button>`}).join('');boardEl.querySelectorAll('.puzzle-piece:not(.blank)').forEach(el=>el.onclick=()=>{const i=Number(el.dataset.i),blank=board.indexOf(15);if(!neighbors(blank).includes(i))return;[board[blank],board[i]]=[board[i],board[blank]];moves++;GameAudio.tone(420,.07,'square',.035);document.getElementById('pmoves').textContent=moves;draw();if(solved())finishPuzzle(p,start,moves)})}draw();const tick=setInterval(()=>{if(!gameRunning){clearInterval(tick);return}left--;const el=document.getElementById('ptime');if(el)el.textContent=left;if(left<=0){clearInterval(tick);gameRunning=false;GameAudio.tone(130,.3,'sawtooth',.06);finishGame(p.id,Math.max(300,Math.round(24000-moves*15)),120)}},1000)}
 function finishPuzzle(p,start,moves){if(!gameRunning)return;gameRunning=false;const elapsed=(Date.now()-start)/1000;const score=Math.max(1000,Math.round(50000-elapsed*220-moves*40));GameAudio.chord([523.25,659.25,783.99],.32,.045);finishGame(p.id,score,elapsed)}
 function puzzlePlacementGame(p){
